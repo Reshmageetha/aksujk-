@@ -1,0 +1,97 @@
+1.CREATE PROCEDURE spDemo2
+    AS
+    BEGIN
+    	DBMS_OUTPUT.PUT_LINE('Hello');
+    END spDemo2;
+   /
+   
+   
+   CREATE OR REPLACE PROCEDURE spAdd
+    AS
+    result NUMBER;
+    BEGIN
+    	result:=10+10;
+    	DBMS_OUTPUT.PUT_LINE(result);
+    END spAdd;
+    /
+	
+	
+	
+ CREATE OR REPLACE PROCEDURE spNum
+   AS
+    num NUMBER;
+    BEGIN
+    	num:=10;
+    	IF num>0 THEN
+    	DBMS_OUTPUT.PUT_LINE('Positive NUMBER');
+    	ELSE
+    	DBMS_OUTPUT.PUT_LINE('Negative NUMBER');
+   	END IF;
+   END spNum;
+  /
+  
+   CREATE OR REPLACE PROCEDURE spNum(num IN NUMBER)
+    AS
+    BEGIN
+    	IF num>0 THEN
+    	DBMS_OUTPUT.PUT_LINE('Positive NUMBER');
+    	ELSE
+    	DBMS_OUTPUT.PUT_LINE('Negative NUMBER');
+    	END IF;
+    END spNum;
+  /
+  
+  
+   CREATE OR REPLACE PROCEDURE spAdd(num1 IN NUMBER,num2 IN NUMBER,num3 OUT NUMBER)
+    AS
+    BEGIN
+    	num3:=num1+num2;
+    END;
+    /
+	
+	
+	
+	
+ DECLARE
+       result NUMBER;
+    BEGIN
+       spAdd(4,5,result);
+       DBMS_OUTPUT.PUT_LINE(result);
+    END;
+    /
+       
+	
+	
+	CREATE OR REPLACE PROCEDURE spEmp
+    (nEmpno IN employee.empno%TYPE,
+     nSal IN OUT NUMBER)
+    AS
+    nMinSal NUMBER;
+    BEGIN
+    	SELECT min(sal) INTO nMinSal FROM employee;
+    	IF nSal<nMinSal
+    	THEN
+   		nSal:=nSal*.3;
+   	END IF;
+   END spEmp;
+  /
+  
+  
+  DECLARE
+    	salno NUMBER;
+    BEGIN
+    	salno:=&salno;
+    	spEmp(&empno,salno);
+    	DBMS_OUTPUT.PUT_LINE(salno);
+   END;
+   
+   
+   CREATE OR REPLACE FUNCTION fnLength(str VARCHAR2)
+    RETURN NUMBER
+    AS
+    len NUMBER;
+    BEGIN
+    	len:=LENGTH(str);
+    	RETURN len;
+    END fnLength;
+   /

@@ -1,0 +1,61 @@
+ CREATE TRIGGER trgdemo1
+    AFTER INSERT ON dept
+    BEGIN
+    	DBMS_OUTPUT.PUT_LINE('Trigger fired');
+    END;
+   /
+   
+   CREATE OR REPLACE TRIGGER trgdemo2
+    AFTER UPDATE OF sal ON employee
+    FOR EACH ROW
+    BEGIN
+    	DBMS_OUTPUT.PUT_LINE('Trigger fired');
+    END;
+  /
+  
+  CREATE OR REPLACE TRIGGER trgdemo3
+    AFTER UPDATE OF sal ON emp
+    FOR EACH ROW
+    BEGIN
+    	DBMS_OUTPUT.PUT_LINE('Trigger fired');
+    END;
+    /
+	
+	CREATE OR REPLACE TRIGGER trgdemo4
+     AFTER UPDATE OF sal ON employee
+     FOR EACH ROW
+     BEGIN
+        DBMS_OUTPUT.PUT_LINE('Trigger fired');
+        DBMS_OUTPUT.PUT_LINE('Old Salary'||:old.sal||' Revised Salary '||:new.sal);
+     END;
+     /
+
+	 
+	 CREATE PACKAGE demo3
+    AS
+    	TYPE details IS REF CURSOR;
+    	PROCEDURE viewDept(deptCur IN OUT details);
+    END demo3;
+    /
+
+	
+	CREATE PACKAGE BODY demo3
+    AS
+    	PROCEDURE viewDept(deptCur IN OUT details) IS
+    	BEGIN
+    		OPEN deptCur FOR sELECT * FROM dept;
+    	END  viewDept;
+    END demo3;
+    /
+	
+	
+	
+	BEGIN
+       INSERT INTO dept VALUES(44,'ee','rr');
+       INSERT INTO dept VALUES(NULL,'ee','rr');
+    EXCEPTION
+       WHEN OTHERS THEN
+               INSERT INTO errorlog VALUES(33,'dff',sysdate);
+    	   rollback;
+    END;
+    /

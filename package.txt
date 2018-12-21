@@ -1,0 +1,86 @@
+CREATE PACKAGE packdemo1
+    AS
+    	PROCEDURE spDemo5;
+    	FUNCTION fnDemo3 RETURN NUMBER;
+    END packdemo1;
+   /
+   
+   
+   
+   CREATE PACKAGE BODY packdemo1
+   AS
+    	PROCEDURE spDemo5
+    	BEGIN
+    		DBMS_OUTPUT.PUT_LINe('Procedure in package');
+    	END;
+    	FUNCTION fnDemo3 RETURN NUMBER IS
+    	BEGIN
+    		DBMS_OUTPUT.PUT_LINe('Function in package');
+   		RETURN 1;
+   	END fnDemo3;
+   END packdemo1;
+  /
+  
+  
+    CREATE OR REPLACE PACKAGE BODY packdemo1
+    AS
+    	PROCEDURE spDemo5 Is
+    	BEGIN
+    		DBMS_OUTPUT.PUT_LINe('Procedure in package');
+    	END spDemo5;
+   	FUNCTION fnDemo3 RETURN NUMBER IS
+    	BEGIN
+    		DBMS_OUTPUT.PUT_LINe('Function in package');
+   		RETURN 1;
+   	END fnDemo3;
+  END packdemo1;
+ /
+ 
+  CREATE OR REPLACE PACKAGE BODY packdemo2
+     AS
+        PROCEDURE spDemo5 Is
+        BEGIN
+                DBMS_OUTPUT.PUT_LINe('Procedure in package');
+        END spDemo5;
+        FUNCTION fnDemo3 RETURN NUMBER IS
+    BEGIN
+            DBMS_OUTPUT.PUT_LINe('Function in package');
+           RETURN 1;
+       END fnDemo3;
+    END packdemo2;
+   /
+   
+   
+   CREATE OR REPLACE PACKAGE BODY packdemo2
+    AS
+        PROCEDURE spDemo5 Is
+        BEGIN
+                DBMS_OUTPUT.PUT_LINe('Procedure in package');
+        END spDemo5;
+        PROCEDURE spDemo6 Is
+        BEGIN
+                DBMS_OUTPUT.PUT_LINe('Procedure2 in package');
+       END spDemo6;
+       FUNCTION fnDemo3 RETURN NUMBER IS
+   BEGIN
+           DBMS_OUTPUT.PUT_LINe('Function in package');
+           RETURN 1;
+       END fnDemo3;
+    END packdemo2;
+   /
+   
+   
+   
+  CREATE OR REPLACE PACKAGE BODY packdemo2
+     AS
+        PROCEDURE spDemo5 Is
+        BEGIN
+               DBMS_OUTPUT.PUT_LINe('Procedure in package');
+        END spDemo5;
+        FUNCTION fnDemo3 RETURN NUMBER IS
+    BEGIN
+            DBMS_OUTPUT.PUT_LINe('Function in package');
+           RETURN 1;
+       END fnDemo3;
+   END packdemo2;
+  /
